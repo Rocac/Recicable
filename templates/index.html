@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clasificador de Reciclaje - Lógica Difusa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #27ae60;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #219150;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Clasificador de Reciclaje</h1>
+
+    <label for="peso">Peso (g):</label>
+    <input type="number" id="peso" min="0" max="1000" value="250">
+
+    <label for="suciedad">Nivel de Suciedad (0-10):</label>
+    <input type="number" id="suciedad" min="0" max="10" value="2">
+
+    <label for="material">Material:</label>
+    <select id="material">
+      <option value="0">Orgánico</option>
+      <option value="1">Papel</option>
+      <option value="2">Plástico</option>
+      <option value="3">Metal</option>
+      <option value="4">Vidrio</option>
+      <option value="5">Otro</option>
+    </select>
+
+    <button onclick="clasificar()">Clasificar</button>
+
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <script>
+    function clasificar() {
+      const peso = parseFloat(document.getElementById('peso').value);
+      const suciedad = parseFloat(document.getElementById('suciedad').value);
+      const material = parseInt(document.getElementById('material').value);
+
+      let clasificacion = null;
+
+      // Lógica difusa simulada (solo para frontend)
+      if (material === 0 && suciedad <= 3) {
+        clasificacion = 'ORGÁNICO';
+      } else if ((material === 1 && suciedad <= 3) || (material === 3 && peso > 600)) {
+        clasificacion = 'RECICLABLE';
+      } else {
+        clasificacion = 'NO RECICLABLE';
+      }
+
+      document.getElementById('resultado').innerText = `➡️ Clasificación: ${clasificacion}`;
+    }
+  </script>
+</body>
+</html>
